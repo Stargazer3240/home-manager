@@ -1,12 +1,13 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "fabricio";
   home.homeDirectory = "/home/fabricio";
   targets.genericLinux.enable = true;
-
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -28,19 +29,17 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
-    pkgs.nixd
-    pkgs.nixpkgs-fmt
+    (pkgs.nerdfonts.override {fonts = ["Hack"];})
+    pkgs.alejandra
     pkgs.lazygit
     pkgs.cargo
     pkgs.nodejs
-    pkgs.libstdcxx5
     pkgs.fd
     pkgs.ripgrep
 
     (pkgs.glibcLocales.override {
       allLocales = false;
-      locales = [ "pt_BR.UTF-8/UTF-8" ];
+      locales = ["pt_BR.UTF-8/UTF-8"];
     })
 
     # # You can also create simple shell scripts directly inside your
@@ -83,4 +82,5 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.bash.enable = true;
 }
